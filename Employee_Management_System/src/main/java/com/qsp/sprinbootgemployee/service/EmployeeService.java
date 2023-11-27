@@ -227,6 +227,24 @@ public class EmployeeService
 			structure.setStatus(HttpStatus.OK.value());
 			structure.setData(employee);
 			employee.setSalary(salary);
+			double salary1= employee.getSalary();
+			if (salary1 < 10000) 
+			{
+				employee.setGrade('A');
+			} 
+			else if (salary1 >= 10000 && salary1< 20000) 
+			{
+				employee.setGrade('B');
+			} 
+			else if (salary1 >= 20000 && salary1 < 40000) 
+			{
+				employee.setGrade('C');
+			} 
+			else 
+			{
+				employee.setGrade('D');
+			}
+
 			dao.updateEmployee(id, employee);
 			return new ResponseEntity<ResponseStructure<Employee>>(structure, HttpStatus.OK);
 
@@ -325,7 +343,6 @@ public class EmployeeService
 			structure.setStatus(HttpStatus.FOUND.value());
 			structure.setData(employees);
 			return new ResponseEntity<ResponseStructure<List<Employee>>>(structure, HttpStatus.FOUND);
-		
 		}
 	}
 
